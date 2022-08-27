@@ -1,29 +1,40 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useState } from 'react';
 import Login from './src/components/Login'
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { getData } from './src/service/login.service';
+
 
 const App = () => {
-  return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //     <Stack.Screen name="Details" component={DetailsScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <View style={styles.container}>
-      <Login />
-    </View>
 
+  
+
+  const Stack = createNativeStackNavigator();
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
+
+const DetailsScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text>Logged In</Text>
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
-      flex : 1,
-      alignItems : 'center',
-      justifyContent: 'center'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

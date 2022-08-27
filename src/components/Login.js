@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
-import { postLogin } from '../service/login.service';
+import { postLogin, saveData, getToken } from '../service/login.service';
 
 
-const Login = () => {
+const Login = ({navigation}) => {
     const [login, setLogin] = React.useState({
         userUsername: "",
         userPassw: ""
@@ -24,9 +24,9 @@ const Login = () => {
         })
     }
     const handleLogin = () => {
-        console.log(login);
-        postLogin(login).then(res => {
-            console.log(res);
+        postLogin(login).then( async (res) => {
+            await saveData(res.data);
+            navigation.navigate('Details');
         })
     }
 
@@ -53,7 +53,7 @@ const Login = () => {
                 mode='contained'
                 onPress={() => handleLogin()}
             >
-                LOGIN
+            LOGIN
             </Button>
         </View>
     )
@@ -61,13 +61,18 @@ const Login = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 250
+        flex : 1,
+        justifyContent: 'center'
     },
     loginButton: {
-        marginTop: 10
+        marginTop: 10,
+        width: 275,
+        alignSelf: 'center'
     },
     textInput: {
-        marginVertical: 10
+        marginVertical: 10,
+        width: 275,
+        alignSelf: 'center'
     }
 })
 
