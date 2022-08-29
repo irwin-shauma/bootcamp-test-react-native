@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/components/Login';
 import { RoleList } from './src/screens/role/role-list/RoleList';
+import { TestHeaderList } from './src/screens/test-header/test-header-list/TestHeaderList';
 
 const theme = {
     ...DefaultTheme,
@@ -29,6 +30,7 @@ export default function Main() {
                 <Stack.Navigator>
                         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
                         <Stack.Screen name="RoleList" component={RoleList} />
+                        <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
 
                 </Stack.Navigator>
             </NavigationContainer>

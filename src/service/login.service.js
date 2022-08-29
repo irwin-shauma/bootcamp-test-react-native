@@ -33,7 +33,7 @@ const getToken = () => {
 }
 
 const getRoleCode = () => {
-    const roleCode = getData().roleCode
+    const roleCode = getData().then(data => data.roleCode)
     if (roleCode) return roleCode
     return null
 }
