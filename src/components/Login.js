@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, Text, StyleSheet, View, ImageBackground } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
-import { postLogin, saveData, getToken } from '../service/login.service';
+import { postLogin, saveData, getToken, getRoleCode } from '../service/login.service';
 
 
 const Login = ({ navigation }) => {
@@ -32,10 +32,16 @@ const Login = ({ navigation }) => {
         postLogin(login).then(async (res) => {
             if (res.data) {
                 await saveData(res.data);
-                navigation.navigate('RoleList');
+                const roleCode = await getRoleCode()
+                if(roleCode === 'SA1'){
+                    navigation.navigate('RoleList');
+                } else if (roleCode == 'HR2') {
+                    navigation.navigate('TestHeaderList')
+                }
             }
         })
     }
+
 
     return (
         <View style={styles.container}>
