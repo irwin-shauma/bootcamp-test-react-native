@@ -5,13 +5,11 @@ async function getApi(url) {
 }
 
 async function postApi(url, data) {
-
     return axios.post(url, data, { method: 'POST' })
         .then(res => res.data)
 }
 
 async function putApi(url, data) {
-
     return axios.put(url, data, { method: 'PUT' })
         .then(res => res.data)
 }
