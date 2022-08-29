@@ -4,10 +4,11 @@ import { getToken } from '../service/login.service';
 const instance = axios.create();
 
 // Request interceptor
-instance.interceptors.request.use(function (request){
+instance.interceptors.request.use(async function (request) {
     const isLogin = request.url.includes('login')
-    if(!isLogin) {
-        request.headers.authorization = `Bearer ${getToken()}`
+    const token = await getToken()
+    if (!isLogin) {
+        request.headers.authorization = `Bearer ${token}`
     }
     return request;
 }, function (error) {
@@ -17,7 +18,7 @@ instance.interceptors.request.use(function (request){
 // Response interceptor
 instance.interceptors.response.use(function (response) {
     return response;
-}, function (error){
+}, function (error) {
     return Promise.reject(error);
 });
 
