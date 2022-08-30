@@ -33,10 +33,14 @@ const Login = ({ navigation }) => {
             if (res.data) {
                 await saveData(res.data);
                 const roleCode = await getRoleCode()
-                if(roleCode === 'SA1'){
+                if (roleCode === 'SA1') {
                     navigation.navigate('RoleList');
                 } else if (roleCode == 'HR2') {
+                    navigation.navigate('HRHomescreen')
+                } else if (roleCode == 'REV3') {
                     navigation.navigate('TestHeaderList')
+                } else if (roleCode == 'CAN4') {
+                    navigation.navigate('CandidateMenu')
                 }
             }
         })
