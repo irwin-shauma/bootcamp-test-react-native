@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react"
 import { FlatList, View, Text, StyleSheet } from "react-native"
 import { getRoles } from "../../../service/role.service"
