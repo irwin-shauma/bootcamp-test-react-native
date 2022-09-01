@@ -38,9 +38,9 @@ const Login = ({ navigation }) => {
                 } else if (roleCode == 'HR2') {
                     navigation.navigate('HRHomescreen')
                 } else if (roleCode == 'REV3') {
-                    navigation.navigate('TestHeaderList')
+                    navigation.navigate('ReviewerHomescreen')
                 } else if (roleCode == 'CAN4') {
-                    navigation.navigate('CandidateMenu')
+                    navigation.navigate('CandidateHomescreen')
                 }
             }
         })

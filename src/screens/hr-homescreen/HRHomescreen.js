@@ -33,7 +33,7 @@ export const HRHomescreen = ({ navigation }) => {
                     android_ripple={{ color: 'black', borderless: false }}
                     style={styles.container}
                     onPressIn={handlePressIn}
-                    >
+                >
                     <Text>This is HR</Text>
                 </Pressable>
             </View>
