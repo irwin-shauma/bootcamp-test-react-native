@@ -12,6 +12,7 @@ import Login from './src/components/Login';
 import { RoleList } from './src/screens/role/role-list/RoleList';
 import { TestHeaderList } from './src/screens/test-header/test-header-list/TestHeaderList';
 import { HRHomescreen } from './src/screens/hr-homescreen/HRHomescreen';
+import { CandidateHomescreen } from './src/screens/candidate-homescreen/CandidateHomescreen';
 
 const theme = {
     ...DefaultTheme,
@@ -33,6 +34,7 @@ export default function Main() {
                     <Stack.Screen name="RoleList" component={RoleList} />
                     <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
                     <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
+                    <Stack.Screen name="CandidateHomescreen" component={CandidateHomescreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             {/* <App /> */}

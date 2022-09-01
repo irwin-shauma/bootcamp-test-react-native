@@ -40,7 +40,7 @@ const Login = ({ navigation }) => {
                 } else if (roleCode == 'REV3') {
                     navigation.navigate('TestHeaderList')
                 } else if (roleCode == 'CAN4') {
-                    navigation.navigate('CandidateMenu')
+                    navigation.navigate('CandidateHomescreen')
                 }
             }
         })
