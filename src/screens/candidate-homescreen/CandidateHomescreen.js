@@ -18,6 +18,8 @@ export const CandidateHomescreen = ({ navigation }) => {
         fileExt: ''
     })
 
+    // const 
+
     // const onDismissSnackBar = () => setVisible(false)
 
     const selectFile = async () => {
@@ -62,21 +64,21 @@ export const CandidateHomescreen = ({ navigation }) => {
             }}>
                 <Text>{idInsert}</Text>
                 <Pressable
-                    android_ripple={{ color: 'black', borderless: false }}
+                    android_ripple={{ color: 'yellow', borderless: false }}
                     style={styles.container}
                     onPressIn={selectFile}
                 >
                     <Text>Select File</Text>
                 </Pressable>
                 <Pressable
-                    android_ripple={{ color: 'black', borderless: false }}
+                    android_ripple={{ color: 'blue', borderless: false }}
                     style={styles.container}
                     onPressIn={uploadFile}
                 >
                     <Text>Upload File</Text>
                 </Pressable>
                 <Pressable
-                    android_ripple={{ color: 'black', borderless: false }}
+                    android_ripple={{ color: 'red', borderless: false }}
                     style={styles.container}
                     onPressIn={downloadFile}
                 >

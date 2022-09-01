@@ -39,7 +39,7 @@ const getRoleCode = () => {
 }
 
 const getId = () => {
-    const id = getData().id
+    const id = getData().then(data => data.id)
     if (id) return id;
     return null
 }
