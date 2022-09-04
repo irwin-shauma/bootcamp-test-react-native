@@ -1,5 +1,5 @@
 import { deleteApi, getApi, postApi, putApi } from "../common/api"
-import { BASE_URL } from "../constant/constant";
+import { BASE_URL } from "../constants/constant";
 
 const getRoles = () => {
     return getApi(`${BASE_URL}/roles`)

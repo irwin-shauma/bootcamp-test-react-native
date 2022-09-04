@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import DocumentPicker, { types } from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
 import { postFile } from '../../service/file.service'
-import { BASE_URL } from "../../constant/constant";
+import { BASE_URL } from "../../constants/constant";
 
 export const CandidateHomescreen = ({ navigation }) => {
     // const handlePressIn = () => {
