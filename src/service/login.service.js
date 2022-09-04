@@ -1,5 +1,5 @@
 import { postApiLogin } from "../common/api"
-import { BASE_URL } from "../constant/constant"
+import { BASE_URL } from "../constants/constant"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const postLogin = (data) => {

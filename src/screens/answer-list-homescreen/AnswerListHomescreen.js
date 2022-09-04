@@ -4,14 +4,23 @@ import { FlatList, StyleSheet, Text, View } from "react-native"
 import { findByAssignId } from "../../service/candidate-essay-answer-header.service"
 import { findAllByTestHeaderId } from "../../service/test-detail.service"
 import { Button, Text as TextPaper } from "react-native-paper"
+import { useSelector } from "react-redux"
 
 export const AnswerListHomescreen = ({ route, navigation }) => {
     const [answerList, setAnswerList] = useState([])
     const [testDetails, setTestDetails] = useState([])
-    const { assignId, testHeaderId } = route.params;
+    // const { assignId, testHeaderId } = route.params;
+    // const { testHeaderId } = route.params;
+    const [answerHeaderId, setAnswerHeaderId] = useState(0)
+
+    const assignId = useSelector((store) => store.count.assignId)
+    const testHeaderId = useSelector((store) => store.count.testHeaderId)
 
     const getData = async () => {
         findByAssignId(assignId).then((res) => {
+            setAnswerHeaderId(() => {
+                return res.data.id
+            })
             getAllByHeaderId(res.data.id).then((res) => {
                 setAnswerList(() => {
                     return res.data
@@ -20,7 +29,6 @@ export const AnswerListHomescreen = ({ route, navigation }) => {
         })
 
         findAllByTestHeaderId(testHeaderId).then((res) => {
-            console.log(res.data);
             setTestDetails(() => {
                 return res.data
             })
@@ -46,7 +54,6 @@ export const AnswerListHomescreen = ({ route, navigation }) => {
             <View style={styles.container_item}>
                 <TextPaper variant="headlineMedium">{index + 1}. </TextPaper>
                 <View>
-                    {/* <Text style={{ fontWeight: 'bold', fontSize: 22 }} >Soal : {item.candidateName}</Text> */}
                     <ShowQuestion id={item.testDetailId} />
                     <Text style={{ fontSize: 22 }}>Jawaban : {item.answerEssay}</Text>
                 </View>
@@ -64,6 +71,9 @@ export const AnswerListHomescreen = ({ route, navigation }) => {
             <View style={{ marginTop: 20 }}>
                 <Button
                     mode="contained"
+                    onPress={() => navigation.navigate('ReviewerScoring', {
+                        answerHeaderId: answerHeaderId
+                    })}
                 >Give Score</Button>
             </View>
         </View>

@@ -5,8 +5,14 @@ import { getAllByReviewer } from '../../service/assign-essay.service'
 import { getId } from '../../service/login.service'
 import { getEmployeeByUserId } from '../../service/employee.service'
 
+
+import { useDispatch } from 'react-redux'
+import { save_assignId } from '../../redux/actions/countAction'
+
 export const ReviewerHomescreen = ({ navigation }) => {
     const [assignEssay, setAssignEssay] = useState([])
+
+    const dispatch = useDispatch();
 
     const getData = async () => {
         const id = await getId();
@@ -28,10 +34,13 @@ export const ReviewerHomescreen = ({ navigation }) => {
             <Pressable
                 android_ripple={{ color: 'green', borderless: false }}
                 style={styles.container}
-                onPress={() => navigation.navigate('AnswerListHomescreen', { assignId: item.id, testHeaderId: item.testHeaderId })}
+                onPress={() => {
+                    dispatch(save_assignId(item.id, item.testHeaderId))
+                    navigation.navigate('AnswerListHomescreen')
+                    // navigation.navigate('AnswerListHomescreen', { assignId: item.id, testHeaderId: item.testHeaderId })
+                }}
             >
                 <View style={styles.container_item}>
-
                     <TextPaper variant="headlineLarge">{index + 1}. </TextPaper>
                     <View>
                         <Text style={{ fontWeight: 'bold', fontSize: 22 }} >Candidate Name : {item.candidateName}</Text>

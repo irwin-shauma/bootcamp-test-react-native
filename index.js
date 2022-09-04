@@ -15,6 +15,11 @@ import { HRHomescreen } from './src/screens/hr-homescreen/HRHomescreen';
 import { CandidateHomescreen } from './src/screens/candidate-homescreen/CandidateHomescreen';
 import { ReviewerHomescreen } from './src/screens/reviewer-homescreen/ReviewerHomescreen';
 import { AnswerListHomescreen } from './src/screens/answer-list-homescreen/AnswerListHomescreen'
+import { ReviewerScoring } from './src/screens/reviewer-scoring/ReviewerScoring';
+import { Provider as StoreProvider } from 'react-redux'
+import { ReduxTesting } from './src/screens/redux-testing/ReduxTesting';
+import configureStore from './src/store/configurationStore'
+import { store } from './src/redux/store'
 
 const theme = {
     ...DefaultTheme,
@@ -26,23 +31,29 @@ const theme = {
     }
 }
 
+// const store = configureStore()
 export default function Main() {
     const Stack = createNativeStackNavigator();
     return (
-        <PaperProvider theme={theme}>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
-                    <Stack.Screen name="RoleList" component={RoleList} />
-                    <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
-                    <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
-                    <Stack.Screen name="CandidateHomescreen" component={CandidateHomescreen} />
-                    <Stack.Screen name="ReviewerHomescreen" component={ReviewerHomescreen} />
-                    <Stack.Screen name="AnswerListHomescreen" component={AnswerListHomescreen} />
-                </Stack.Navigator>
-            </NavigationContainer>
-            {/* <App /> */}
-        </PaperProvider>
+        // <App />
+        <StoreProvider store={store}>
+            <PaperProvider theme={theme}>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        {/* <Stack.Screen name="ReduxTesting" component={ReduxTesting} /> */}
+                        <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+                        <Stack.Screen name="RoleList" component={RoleList} />
+                        <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
+                        <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
+                        <Stack.Screen name="CandidateHomescreen" component={CandidateHomescreen} />
+                        <Stack.Screen name="ReviewerHomescreen" component={ReviewerHomescreen} />
+                        <Stack.Screen name="AnswerListHomescreen" component={AnswerListHomescreen} />
+                        <Stack.Screen name="ReviewerScoring" component={ReviewerScoring} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+
+            </PaperProvider>
+        </StoreProvider>
     )
 }
 

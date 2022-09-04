@@ -1,5 +1,5 @@
 import { deleteApi, getApi, postApi, putApi } from "../common/api"
-import { BASE_URL } from "../constant/constant"
+import { BASE_URL } from "../constants/constant"
 
 const getCandidateEssayAnswerHeaders = () => {
     return getApi(`${BASE_URL}/candidate-essay-answer-headers`)
@@ -21,9 +21,14 @@ const updateCandidateEssayAnswerHeader = (data) => {
     return putApi(`${BASE_URL}/candidate-essay-answer-headers`, data)
 }
 
+const giveScore = (data) => {
+    return putApi(`${BASE_URL}/candidate-essay-answer-headers/score`, data)
+}
+
 const deleteCandidateEssayAnswerHeader = (id) => {
     return deleteApi(`${BASE_URL}/candidate-essay-answer-headers/${id}`)
 }
+
 
 export {
     getCandidateEssayAnswerHeaders,
@@ -31,5 +36,6 @@ export {
     findByAssignId,
     insertCandidateEssayAnswerHeader,
     updateCandidateEssayAnswerHeader,
+    giveScore,
     deleteCandidateEssayAnswerHeader
 }
