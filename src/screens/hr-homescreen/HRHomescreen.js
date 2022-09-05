@@ -4,52 +4,59 @@ import React from 'react'
 
 
 export const HRHomescreen = ({ navigation }) => {
-
-
-
     const handlePressIn = () => {
         navigation.navigate('TestHeaderList')
     }
+    const handleCreateTest = () => {
+        navigation.navigate('HRCreateTest')
+    }
 
+    const handleAssignTest = () => {
+        navigation.navigate('HRAssignTest')
+    }
 
     return (
-        <View>
-            <TouchableRipple
-                // onPress={() => }
-                rippleColor='rgba(0,0,0, .32)'
+        <View style={styles.container}>
+            <Pressable
+                android_ripple={{ color: 'black', borderless: false }}
+                style={styles.pressable}
+                onPressIn={handlePressIn}
             >
-                <Button>Hello</Button>
-
-            </TouchableRipple>
-
-
-
-            <View style={{
-                borderRadius: 50,
-                overflow: 'hidden',
-                alignSelf: 'center'
-            }}>
-                <Pressable
-                    android_ripple={{ color: 'black', borderless: false }}
-                    style={styles.container}
-                    onPressIn={handlePressIn}
-                >
-                    <Text>This is HR</Text>
-                </Pressable>
-            </View>
+                <Text>Create Candidate</Text>
+            </Pressable>
+            <Pressable
+                android_ripple={{ color: 'black', borderless: false }}
+                style={styles.pressable}
+                onPressIn={handleCreateTest}
+            >
+                <Text>Create Test</Text>
+            </Pressable>
+            <Pressable
+                android_ripple={{ color: 'black', borderless: false }}
+                style={styles.pressable}
+                onPressIn={handleAssignTest}
+            >
+                <Text>Assign Test</Text>
+            </Pressable>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    pressable: {
         width: 100,
         height: 100,
+        marginVertical: 10,
+        marginHorizontal: 10,
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 50,
-        borderColor: 'red',
+        borderRadius: 25,
         borderWidth: 1
     }
 })

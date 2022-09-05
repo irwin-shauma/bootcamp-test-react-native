@@ -12,13 +12,13 @@ import Login from './src/components/Login';
 import { RoleList } from './src/screens/role/role-list/RoleList';
 import { TestHeaderList } from './src/screens/test-header/test-header-list/TestHeaderList';
 import { HRHomescreen } from './src/screens/hr-homescreen/HRHomescreen';
+import { HRCreateTest } from "./src/screens/hr-create-test/HRCreateTest";
+import { HRAssignTest } from "./src/screens/hr-assign-test/HRAssignTest";
 import { CandidateHomescreen } from './src/screens/candidate-homescreen/CandidateHomescreen';
 import { ReviewerHomescreen } from './src/screens/reviewer-homescreen/ReviewerHomescreen';
 import { AnswerListHomescreen } from './src/screens/answer-list-homescreen/AnswerListHomescreen'
 import { ReviewerScoring } from './src/screens/reviewer-scoring/ReviewerScoring';
 import { Provider as StoreProvider } from 'react-redux'
-import { ReduxTesting } from './src/screens/redux-testing/ReduxTesting';
-import configureStore from './src/store/configurationStore'
 import { store } from './src/redux/store'
 
 const theme = {
@@ -44,6 +44,8 @@ export default function Main() {
                         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
                         <Stack.Screen name="RoleList" component={RoleList} />
                         <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
+                        <Stack.Screen name="HRCreateTest" component={HRCreateTest} />
+                        <Stack.Screen name="HRAssignTest" component={HRAssignTest} />
                         <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
                         <Stack.Screen name="CandidateHomescreen" component={CandidateHomescreen} />
                         <Stack.Screen name="ReviewerHomescreen" component={ReviewerHomescreen} />
