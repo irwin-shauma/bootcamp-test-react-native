@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/components/Login';
 import { RoleList } from './src/screens/role/role-list/RoleList';
 import { RoleCreate } from './src/screens/role/role-create/RoleCreate';
+import { RoleUpdate } from './src/screens/role/role-update/RoleUpdate';
 import { TestHeaderList } from './src/screens/test-header/test-header-list/TestHeaderList';
 import { HRHomescreen } from './src/screens/hr-homescreen/HRHomescreen';
 import { HRCreateTest } from "./src/screens/hr-create-test/HRCreateTest";
@@ -45,6 +46,7 @@ export default function Main() {
                         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
                         <Stack.Screen name="RoleList" component={RoleList} />
                         <Stack.Screen name="RoleCreate" component={RoleCreate} />
+                        <Stack.Screen name="RoleUpdate" component={RoleUpdate} />
                         <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
                         <Stack.Screen name="HRCreateTest" component={HRCreateTest} />
                         <Stack.Screen name="HRAssignTest" component={HRAssignTest} />

@@ -4,7 +4,7 @@ import { Button, TextInput } from "react-native-paper";
 import { useDispatch, connect } from "react-redux"
 import { createRole } from "../../../redux/actions/roleAction";
 
-export const RoleCreate = () => {
+export const RoleCreate = ({ navigation }) => {
     const initialRoleState = {
         roleCode: "",
         roleName: "",
@@ -17,17 +17,21 @@ export const RoleCreate = () => {
     const saveRole = () => {
         const { roleName, roleCode } = role
         dispatch(createRole(roleName, roleCode))
-            .then(data => {
-                setRole({
-                    roleName: data.roleName,
-                    roleCode: data.roleCode
-                })
-                setSubmitted(true)
-                console.log(data);
+            .then(() => {
+                // setRole({
+                //     roleName: data.roleName,
+                //     roleCode: data.roleCode
+                // })
+                // setSubmitted(true)
+                // console.log(data);
+                navigation.navigate("RoleList")
+
+
             })
             .catch(e => {
                 console.log(e);
             })
+
     }
     const newRole = () => {
         setRole(initialRoleState)
@@ -48,7 +52,7 @@ export const RoleCreate = () => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
                 style={styles.textInput}
                 label='Name'
