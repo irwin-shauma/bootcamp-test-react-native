@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { FlatList, View, Text, StyleSheet } from "react-native"
 import { getRoles } from "../../../service/role.service"
-import { Text as TextPaper, IconButton } from 'react-native-paper'
+import { Text as TextPaper, IconButton, Button } from 'react-native-paper'
 import { useDispatch, useSelector } from "react-redux"
-import { retrieveRoles } from '../../../redux/actions/roleAction'
+import { retrieveRoles, removeRole } from '../../../redux/actions/roleAction'
 
 export const RoleList = ({ navigation }) => {
 
@@ -21,13 +21,15 @@ export const RoleList = ({ navigation }) => {
     }
 
     useEffect(() => {
-        // getData()
         dispatch(retrieveRoles())
-        // console.log(roles, "===> Here");
     }, [])
 
+    const handleInsert = (() => {
+        navigation.navigate("RoleCreate")
+    })
+
     const renderItem = ({ item }) => {
-        
+
         return (
             <View style={styles.container_item}>
                 <TextPaper variant="headlineSmall">{item.id}. </TextPaper>
@@ -39,19 +41,28 @@ export const RoleList = ({ navigation }) => {
                     <IconButton
                         icon="delete-circle"
                         size={20}
-                        style={{alignSelf: 'flex-end'}}
+                        style={{ alignSelf: 'flex-end' }}
+                        onPress={() => {
+                            dispatch(removeRole(item.id))
+                            navigation.navigate('RoleList')
+                        }}
                     />
                     <IconButton
                         icon="circle-edit-outline"
                         size={20}
-                        style={{alignSelf: 'flex-end'}}
+                        style={{ alignSelf: 'flex-end' }}
+                        onPress={() => {
+                            // dispatch(removeRole(item.id))
+                            navigation.navigate('RoleUpdate', {
+                                roleId: item.id
+                            })
+                        }}
                     />
                 </View>
             </View>
         )
     }
 
-    // console.log(roles, "==> Here");
     return (
         <View>
             <FlatList
@@ -59,6 +70,14 @@ export const RoleList = ({ navigation }) => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
+            <Button
+                style={styles.loginButton}
+                icon='login'
+                mode='contained'
+                onPress={() => handleInsert()}
+            >
+                ADD ROLES
+            </Button>
         </View>
     )
 
@@ -74,5 +93,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex: 1,
-    }
+    },
+    loginButton: {
+        marginTop: 10,
+        width: 275,
+        alignSelf: 'center'
+    },
 })

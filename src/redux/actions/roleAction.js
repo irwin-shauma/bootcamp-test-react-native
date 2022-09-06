@@ -4,17 +4,19 @@ import {
     UPDATE_ROLE,
     DELETE_ROLE
 } from "../../constants/index"
-import { 
+import {
     getRoles,
     getSingleRole,
     insertRole,
     updateRole,
-    deleteRole 
+    deleteRole
 } from "../../service/role.service";
 
 export const createRole = (roleName, roleCode) => async (dispatch) => {
-    try{
-        const res = await insertRole({roleName, roleCode})
+    try {
+        const insertRes = await insertRole({ roleName, roleCode })
+        const res = await getSingleRole(insertRes.data.id)
+        console.log(res);
         dispatch({
             type: CREATE_ROLE,
             payload: res.data
@@ -49,12 +51,14 @@ export const retrieveSingleRole = (id) => async (dispatch) => {
 }
 
 export const modifyRole = (data) => async (dispatch) => {
-    try{
+    try {
         const res = await updateRole(data)
+        console.log(res.data);
         dispatch({
             type: UPDATE_ROLE,
-            payload: res.data
+            payload: data
         })
+        // return Promise.resolve(data)
         return Promise.resolve(res.data)
     } catch (err) {
         return Promise.reject(err)
@@ -62,12 +66,12 @@ export const modifyRole = (data) => async (dispatch) => {
 }
 
 export const removeRole = (id) => async (dispatch) => {
-    try{
+    try {
         const res = await deleteRole(id)
         dispatch({
             type: DELETE_ROLE,
             // payload: res
-            payload: {id}
+            payload: { id }
         })
         // return Promise.resolve(res)
     } catch (err) {
