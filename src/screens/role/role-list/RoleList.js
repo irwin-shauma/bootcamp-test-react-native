@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react"
 import { FlatList, View, Text, StyleSheet } from "react-native"
 import { getRoles } from "../../../service/role.service"
 import { Text as TextPaper, IconButton } from 'react-native-paper'
+import { useDispatch, useSelector } from "react-redux"
+import { retrieveRoles } from '../../../redux/actions/roleAction'
 
 export const RoleList = ({ navigation }) => {
+
+    const roles = useSelector(state => state.roles)
+    const dispatch = useDispatch()
 
     const [data, setData] = useState([])
 
@@ -16,10 +21,13 @@ export const RoleList = ({ navigation }) => {
     }
 
     useEffect(() => {
-        getData()
+        // getData()
+        dispatch(retrieveRoles())
+        // console.log(roles, "===> Here");
     }, [])
 
     const renderItem = ({ item }) => {
+        
         return (
             <View style={styles.container_item}>
                 <TextPaper variant="headlineSmall">{item.id}. </TextPaper>
@@ -39,18 +47,17 @@ export const RoleList = ({ navigation }) => {
                         style={{alignSelf: 'flex-end'}}
                     />
                 </View>
-
             </View>
         )
     }
 
+    // console.log(roles, "==> Here");
     return (
         <View>
             <FlatList
-                data={data}
+                data={roles}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-
             />
         </View>
     )
@@ -59,17 +66,13 @@ export const RoleList = ({ navigation }) => {
 const styles = StyleSheet.create({
     container_item: {
         flexDirection: 'row',
-        // justifyContent: 'space-between',
         marginVertical: 10,
         borderEndWidth: 1
-        // borderBottomWidth: 1,
-        // borderTopWidth: 1
     },
     actions: {
         justifyContent: 'flex-end',
         flexDirection: 'row',
         alignSelf: 'flex-end',
         flex: 1,
-        // borderBottomWidth: 1
     }
 })
