@@ -34,6 +34,7 @@ const Login = ({ navigation }) => {
                 await saveData(res.data);
                 const roleCode = await getRoleCode()
                 if (roleCode === 'SA1') {
+                    // navigation.navigate('RoleCreate');
                     navigation.navigate('RoleList');
                 } else if (roleCode == 'HR2') {
                     navigation.navigate('HRHomescreen')
@@ -45,7 +46,6 @@ const Login = ({ navigation }) => {
             }
         })
     }
-
 
     return (
         <View style={styles.container}>
