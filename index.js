@@ -20,6 +20,7 @@ import { CandidateHomescreen } from './src/screens/candidate-homescreen/Candidat
 import { ReviewerHomescreen } from './src/screens/reviewer-homescreen/ReviewerHomescreen';
 import { AnswerListHomescreen } from './src/screens/answer-list-homescreen/AnswerListHomescreen'
 import { ReviewerScoring } from './src/screens/reviewer-scoring/ReviewerScoring';
+import { AdminHomescreen } from './src/screens/admin-homescreen/AdminHomescreen';
 import { Provider as StoreProvider } from 'react-redux'
 import { store } from './src/redux/store'
 
@@ -44,6 +45,7 @@ export default function Main() {
                     <Stack.Navigator>
                         {/* <Stack.Screen name="ReduxTesting" component={ReduxTesting} /> */}
                         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+                        <Stack.Screen name='AdminHomescreen' component={AdminHomescreen} />
                         <Stack.Screen name="RoleList" component={RoleList} />
                         <Stack.Screen name="RoleCreate" component={RoleCreate} />
                         <Stack.Screen name="RoleUpdate" component={RoleUpdate} />

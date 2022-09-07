@@ -6,6 +6,33 @@ import { postLogin, saveData, getToken, getRoleCode } from '../service/login.ser
 
 
 const Login = ({ navigation }) => {
+    const checkisLogin = async () => {
+        try {
+            const token = await getToken()
+            const roleCode = await getRoleCode()
+
+            if (token != null && roleCode != null) {
+                if (roleCode === 'SA1') {
+                    // navigation.navigate('RoleCreate');
+                    navigation.navigate('AdminHomescreen');
+                } else if (roleCode == 'HR2') {
+                    navigation.navigate('HRHomescreen')
+                } else if (roleCode == 'REV3') {
+                    navigation.navigate('ReviewerHomescreen')
+                } else if (roleCode == 'CAN4') {
+                    navigation.navigate('CandidateHomescreen')
+                }
+            }
+        } catch (e) {
+            console.log("Not logged in");
+        }
+    }
+
+    React.useEffect(() => {
+        checkisLogin()
+    }, [])
+
+
     const [login, setLogin] = React.useState({
         userUsername: "",
         userPassw: ""
@@ -35,7 +62,7 @@ const Login = ({ navigation }) => {
                 const roleCode = await getRoleCode()
                 if (roleCode === 'SA1') {
                     // navigation.navigate('RoleCreate');
-                    navigation.navigate('RoleList');
+                    navigation.navigate('AdminHomescreen');
                 } else if (roleCode == 'HR2') {
                     navigation.navigate('HRHomescreen')
                 } else if (roleCode == 'REV3') {

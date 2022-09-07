@@ -1,6 +1,8 @@
 import { postApiLogin } from "../common/api"
 import { BASE_URL } from "../constants/constant"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useNavigation } from "@react-navigation/native"
+
 
 const postLogin = (data) => {
     // return postApi('http://192.168.36.1:1234/login', data)
@@ -27,7 +29,6 @@ const getData = async () => {
 
 const getToken = () => {
     const token = getData().then(data => data.token)
-
     if (token) return token
     return null
 }
@@ -44,9 +45,14 @@ const getId = () => {
     return null
 }
 
-const clearData = () => {
-    localStorage.clear()
+const clearData = async () => {
+    try {
+        await AsyncStorage.removeItem('data')
+    } catch (e) {
+        console.log(e);
+    }
 }
+
 
 
 export {

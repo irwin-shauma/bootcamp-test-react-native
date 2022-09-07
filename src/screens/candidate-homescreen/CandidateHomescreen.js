@@ -7,9 +7,6 @@ import { postFile } from '../../service/file.service'
 import { BASE_URL } from "../../constants/constant";
 
 export const CandidateHomescreen = ({ navigation }) => {
-    // const handlePressIn = () => {
-    //     navigation.navigate('')
-    // }
     const [file, setFile] = useState();
     const [visible, setVisible] = useState(false)
     const [idInsert, setIdInsert] = useState(0);
@@ -17,9 +14,6 @@ export const CandidateHomescreen = ({ navigation }) => {
         fileName: '',
         fileExt: ''
     })
-
-    // const 
-
     // const onDismissSnackBar = () => setVisible(false)
 
     const selectFile = async () => {
@@ -47,13 +41,11 @@ export const CandidateHomescreen = ({ navigation }) => {
         postFile(upload).then(res => {
             setIdInsert(res.insertResData.id)
         })
-        // console.log(upload.fileExtension)
     }
 
     const downloadFile = () => {
         Linking.openURL(`${BASE_URL}/files/${idInsert}`)
     }
-
 
     return (
         <View>
@@ -87,9 +79,6 @@ export const CandidateHomescreen = ({ navigation }) => {
             </View>
         </View>
     )
-
-
-
 }
 
 const styles = StyleSheet.create({
