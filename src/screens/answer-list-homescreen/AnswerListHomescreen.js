@@ -6,11 +6,9 @@ import { findAllByTestHeaderId } from "../../service/test-detail.service"
 import { Button, Text as TextPaper } from "react-native-paper"
 import { useSelector } from "react-redux"
 
-export const AnswerListHomescreen = ({ route, navigation }) => {
+export const AnswerListHomescreen = ({ navigation }) => {
     const [answerList, setAnswerList] = useState([])
     const [testDetails, setTestDetails] = useState([])
-    // const { assignId, testHeaderId } = route.params;
-    // const { testHeaderId } = route.params;
     const [answerHeaderId, setAnswerHeaderId] = useState(0)
 
     const assignId = useSelector((store) => store.count.assignId)
@@ -43,7 +41,7 @@ export const AnswerListHomescreen = ({ route, navigation }) => {
         for (const item of testDetails) {
             if (item.id == props.id) {
                 return (
-                    <Text>{item.testContent}</Text>
+                    <Text >{item.testContent}</Text>
                 )
             }
         }

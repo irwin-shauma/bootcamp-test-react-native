@@ -58,7 +58,6 @@ export const modifyRole = (data) => async (dispatch) => {
             type: UPDATE_ROLE,
             payload: data
         })
-        // return Promise.resolve(data)
         return Promise.resolve(res.data)
     } catch (err) {
         return Promise.reject(err)

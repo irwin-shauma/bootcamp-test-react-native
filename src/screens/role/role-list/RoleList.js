@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { FlatList, View, Text, StyleSheet } from "react-native"
 import { getRoles } from "../../../service/role.service"
-import { Text as TextPaper, IconButton, Button } from 'react-native-paper'
+import { Text as TextPaper, IconButton, Button, BottomNavigation, AnimatedFAB } from 'react-native-paper'
 import { useDispatch, useSelector } from "react-redux"
 import { retrieveRoles, removeRole } from '../../../redux/actions/roleAction'
+import { clearData } from "../../../service/login.service";
 
 export const RoleList = ({ navigation }) => {
 
@@ -29,7 +30,6 @@ export const RoleList = ({ navigation }) => {
     })
 
     const renderItem = ({ item }) => {
-
         return (
             <View style={styles.container_item}>
                 <TextPaper variant="headlineSmall">{item.id}. </TextPaper>
@@ -59,12 +59,13 @@ export const RoleList = ({ navigation }) => {
                         }}
                     />
                 </View>
+
             </View>
         )
     }
 
     return (
-        <View>
+        <View style={{ borderWidth: 1, flex: 1 }}>
             <FlatList
                 data={roles}
                 renderItem={renderItem}
@@ -74,10 +75,23 @@ export const RoleList = ({ navigation }) => {
                 style={styles.loginButton}
                 icon='login'
                 mode='contained'
-                onPress={() => handleInsert()}
+                onPress={async () => {
+                    await clearData()
+                    navigation.replace('Login')
+                }}
             >
-                ADD ROLES
+                LOGOUT
             </Button>
+            <AnimatedFAB
+                icon={'plus'}
+                label={'Add Role'}
+                // extended={true}
+                onPress={() => handleInsert()}
+                visible={true}
+                animateFrom={'right'}
+                iconMode={'static'}
+                style={[styles.fabStyle]}
+            />
         </View>
     )
 
@@ -98,5 +112,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: 275,
         alignSelf: 'center'
+    },
+    fabStyle: {
+        bottom: 16,
+        right: 16,
+        position: 'absolute',
     },
 })
