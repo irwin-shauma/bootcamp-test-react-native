@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { FlatList, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Appbar, Button, FAB, Text, TextInput, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { insertTestHeader } from "../../service/test-header.service";
+
+const BOTTOM_APPBAR_HEIGHT = 80;
+const MEDIUM_FAB_HEIGHT = 56;
 
 export const HRCreateTest = ({ navigation }) => {
     const [data, setData] = useState({
@@ -20,13 +23,14 @@ export const HRCreateTest = ({ navigation }) => {
     for (let i = 0; i < numInputs; i++) {
         inputs.push(
             <View key={i} style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center', marginLeft: 10, marginRight: 10 }}>{i + 1}</Text>
+                <Text
+                    variant='titleLarge'
+                    style={{ alignSelf: 'center', marginLeft: 5, marginRight: 5 }}>{i + 1}.</Text>
                 <TextInput
-                    // style={styles.input}
+                    mode='outlined'
                     style={{ width: 275, marginVertical: 10 }}
                     onChangeText={value => {
                         setInputValue(i, value)
-
                     }}
                     value={refInputs.current[i]}
                     placeholder="Insert Question Here"
@@ -48,7 +52,7 @@ export const HRCreateTest = ({ navigation }) => {
         setData(() => {
             return { ...data, testTitle }
         })
-        console.log(data);
+        // console.log(data);
     }
 
     const handleSaveData = () => {
@@ -56,18 +60,15 @@ export const HRCreateTest = ({ navigation }) => {
     }
 
     const setInputValue = (index, value) => {
-        // first, we are storing input value to refInputs array to track them
         const inputs = refInputs.current
         inputs[index] = value
-        // we are also setting the text value to the input field onChangeText
         setTextValue(value)
-        console.log(textValue);
     }
 
+    // The problem is in here
     const addInput = () => {
-        // add a new element in our refInputs array
         refInputs.current.push('');
-        // increase the number of inputs
+        console.log(refInputs.current);
         setNumInputs(value => value + 1);
 
         setData(() => {
@@ -93,33 +94,27 @@ export const HRCreateTest = ({ navigation }) => {
     const theme = useTheme()
 
     return (
-        // <View style={{ flex: 1 }}>
-        <View>
-            <View style={{ borderWidth: 1, borderColor: 'red' }}>
-                <Text>This is HR Create Test Screen</Text>
+        <View style={styles.container}>
+            <View>
                 <TextInput
+                    style={{ width: 375, alignSelf: 'center' }}
                     mode='outlined'
-                    label="Test Title"
+                    label="Title"
                     placeholder="Input test title here"
                     value={data.testTitle}
                     onChangeText={(testTitle) => handleChangeTestTitle(testTitle)}
                 />
-                <Button
-                    mode='contained'
-                    // onPress={() => console.log(data, refInputs.current)}
-                    onPress={handleSaveData}
-                    style={{ marginTop: 15 }}
-                >
-                    SAVE
-                </Button>
 
-                <ScrollView>
+                <ScrollView style={{ maxHeight: 490, marginTop: 10 }}>
                     {inputs}
-                    <Pressable onPress={addInput}>
-                        <Text style={{ color: 'white', fontWeight: 'bold' }} >
-                            + Add new input
-                        </Text>
-                    </Pressable>
+                    <Button
+                        style={{ color: 'white', fontWeight: 'bold', width: 200, alignSelf: 'center' }}
+                        mode="contained"
+                        onPress={addInput}
+
+                    >
+                        + Add new question
+                    </Button>
                     <View style={{ marginTop: 25 }} >
                         <Text>You have answered</Text>
                         {refInputs.current.map((value, i) => {
@@ -131,7 +126,7 @@ export const HRCreateTest = ({ navigation }) => {
                 </ScrollView>
             </View>
 
-            {/* <Appbar
+            <Appbar
                 style={[
                     styles.bottom,
                     {
@@ -141,28 +136,31 @@ export const HRCreateTest = ({ navigation }) => {
                 ]}
                 safeAreaInsets={{ bottom }}
             >
-                <Appbar.Action icon="archive" onPress={() => { }} />
-                <Appbar.Action icon="email" onPress={() => { }} />
-                <Appbar.Action icon="label" onPress={() => { }} />
                 <Appbar.Action icon="delete" onPress={() => { }} />
                 <FAB
                     mode="flat"
                     size="medium"
-                    icon="plus"
-                    onPress={() => { }}
+                    label='SAVE'
+                    icon="content-save"
+                    onPress={handleSaveData}
                     style={[
                         styles.fab,
                         { top: (BOTTOM_APPBAR_HEIGHT - MEDIUM_FAB_HEIGHT) / 2 },
                     ]}
                 />
-            </Appbar> */}
+            </Appbar>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        // flexDirection: 'row',
+        // justifyContent: 'center'
+    },
     bottom: {
-        backgroundColor: 'aquamarine',
+        backgroundColor: 'white',
         position: 'absolute',
         left: 0,
         right: 0,
