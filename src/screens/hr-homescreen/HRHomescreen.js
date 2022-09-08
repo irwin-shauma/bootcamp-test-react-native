@@ -36,13 +36,13 @@ export const HRHomescreen = ({ navigation }) => {
             >
                 <Text>Create Test</Text>
             </Pressable>
-            <Pressable
+            {/* <Pressable
                 android_ripple={{ color: 'black', borderless: false }}
                 style={styles.pressable}
                 onPressIn={handleAssignTest}
             >
                 <Text>Assign Test</Text>
-            </Pressable>
+            </Pressable> */}
 
             <Appbar
                 style={[
