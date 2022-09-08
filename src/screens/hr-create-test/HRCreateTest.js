@@ -23,12 +23,14 @@ export const HRCreateTest = ({ navigation }) => {
     for (let i = 0; i < numInputs; i++) {
         inputs.push(
             <View key={i} style={{ flexDirection: 'row' }}>
-                <Text
-                    variant='titleLarge'
-                    style={{ alignSelf: 'center', marginLeft: 5, marginRight: 5 }}>{i + 1}.</Text>
+                <View style={{ width: 30, justifyContent: 'center' }}>
+                    <Text
+                        variant='titleSmall'
+                        style={{ alignSelf: 'center', marginLeft: 5, marginRight: 5 }}>{i + 1}.</Text>
+                </View>
                 <TextInput
                     mode='outlined'
-                    style={{ width: 275, marginVertical: 10 }}
+                    style={{ width: 225, marginVertical: 10 }}
                     onChangeText={value => {
                         setInputValue(i, value)
                     }}
@@ -52,11 +54,26 @@ export const HRCreateTest = ({ navigation }) => {
         setData(() => {
             return { ...data, testTitle }
         })
-        // console.log(data);
     }
 
     const handleSaveData = () => {
-        console.log(data);
+        const localTestDetails = []
+        for (let i = 0; i < numInputs; i++) {
+            localTestDetails.push({
+                testContent: refInputs.current[i]
+            })
+        }
+
+        setData(() => {
+            return ({
+                ...data, testDetails: localTestDetails
+            })
+        })
+
+        insertTestHeader(data).then((res) => {
+            console.log(res);
+            navigation.navigate('HRHomescreen')
+        })
     }
 
     const setInputValue = (index, value) => {
@@ -65,28 +82,25 @@ export const HRCreateTest = ({ navigation }) => {
         setTextValue(value)
     }
 
-    // The problem is in here
     const addInput = () => {
         refInputs.current.push('');
-        console.log(refInputs.current);
+        // console.log(refInputs.current);
         setNumInputs(value => value + 1);
 
-        setData(() => {
-            return ({
-                ...data, testDetails: [
-                    ...data.testDetails,
-                    {
-                        testContent: textValue
-                    }
-                ]
-            })
-        })
+        // setData(() => {
+        //     return ({
+        //         ...data, testDetails: [
+        //             ...data.testDetails,
+        //             {
+        //                 testContent: textValue
+        //             }
+        //         ]
+        //     })
+        // })
     }
 
     const removeInput = (i) => {
-        //remove from the array by index value
         refInputs.current.splice(i, 1)[0]
-        // decrease the number of inputs
         setNumInputs(value => value - 1)
     }
 
@@ -97,7 +111,7 @@ export const HRCreateTest = ({ navigation }) => {
         <View style={styles.container}>
             <View>
                 <TextInput
-                    style={{ width: 375, alignSelf: 'center' }}
+                    style={{ width: 350, alignSelf: 'center' }}
                     mode='outlined'
                     label="Title"
                     placeholder="Input test title here"
@@ -105,7 +119,7 @@ export const HRCreateTest = ({ navigation }) => {
                     onChangeText={(testTitle) => handleChangeTestTitle(testTitle)}
                 />
 
-                <ScrollView style={{ maxHeight: 490, marginTop: 10 }}>
+                <ScrollView style={{ maxHeight: 540, marginTop: 10 }}>
                     {inputs}
                     <Button
                         style={{ color: 'white', fontWeight: 'bold', width: 200, alignSelf: 'center' }}
@@ -116,7 +130,7 @@ export const HRCreateTest = ({ navigation }) => {
                         + Add new question
                     </Button>
                     <View style={{ marginTop: 25 }} >
-                        <Text>You have answered</Text>
+                        <Text>You have input</Text>
                         {refInputs.current.map((value, i) => {
                             return <Text key={i}>
                                 {`${i + 1} - ${value}`}
@@ -136,7 +150,7 @@ export const HRCreateTest = ({ navigation }) => {
                 ]}
                 safeAreaInsets={{ bottom }}
             >
-                <Appbar.Action icon="delete" onPress={() => { }} />
+                {/* <Appbar.Action icon="delete" onPress={() => { }} /> */}
                 <FAB
                     mode="flat"
                     size="medium"
@@ -156,8 +170,6 @@ export const HRCreateTest = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // flexDirection: 'row',
-        // justifyContent: 'center'
     },
     bottom: {
         backgroundColor: 'white',
