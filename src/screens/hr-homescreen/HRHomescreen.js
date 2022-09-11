@@ -8,8 +8,8 @@ const BOTTOM_APPBAR_HEIGHT = 80;
 const MEDIUM_FAB_HEIGHT = 56;
 
 export const HRHomescreen = ({ navigation }) => {
-    const handlePressIn = () => {
-        navigation.navigate('TestHeaderList')
+    const handleCreateCandidate = () => {
+        navigation.navigate('HRCreateCandidate')
     }
     const handleCreateTest = () => {
         navigation.navigate('HRCreateTest')
@@ -25,7 +25,7 @@ export const HRHomescreen = ({ navigation }) => {
             <Pressable
                 android_ripple={{ color: 'black', borderless: false }}
                 style={styles.pressable}
-                onPressIn={handlePressIn}
+                onPressIn={handleCreateCandidate}
             >
                 <Text>Create Candidate</Text>
             </Pressable>
@@ -36,13 +36,13 @@ export const HRHomescreen = ({ navigation }) => {
             >
                 <Text>Create Test</Text>
             </Pressable>
-            {/* <Pressable
+            <Pressable
                 android_ripple={{ color: 'black', borderless: false }}
                 style={styles.pressable}
                 onPressIn={handleAssignTest}
             >
                 <Text>Assign Test</Text>
-            </Pressable> */}
+            </Pressable>
 
             <Appbar
                 style={[

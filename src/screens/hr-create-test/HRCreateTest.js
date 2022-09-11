@@ -129,14 +129,14 @@ export const HRCreateTest = ({ navigation }) => {
                     >
                         + Add new question
                     </Button>
-                    <View style={{ marginTop: 25 }} >
+                    {/* <View style={{ marginTop: 25 }} >
                         <Text>You have input</Text>
                         {refInputs.current.map((value, i) => {
                             return <Text key={i}>
                                 {`${i + 1} - ${value}`}
                             </Text>
                         })}
-                    </View>
+                    </View> */}
                 </ScrollView>
             </View>
 
