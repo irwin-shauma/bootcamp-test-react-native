@@ -15,6 +15,7 @@ import { RoleUpdate } from './src/screens/role/role-update/RoleUpdate';
 import { TestHeaderList } from './src/screens/test-header/test-header-list/TestHeaderList';
 import { HRHomescreen } from './src/screens/hr-homescreen/HRHomescreen';
 import { HRCreateTest } from "./src/screens/hr-create-test/HRCreateTest";
+import { HRCreateCandidate } from "./src/screens/hr-create-candidate/HRCreateCandidate";
 import { HRAssignTest } from "./src/screens/hr-assign-test/HRAssignTest";
 import { CandidateHomescreen } from './src/screens/candidate-homescreen/CandidateHomescreen';
 import { ReviewerHomescreen } from './src/screens/reviewer-homescreen/ReviewerHomescreen';
@@ -50,6 +51,7 @@ export default function Main() {
                         <Stack.Screen name="RoleCreate" component={RoleCreate} />
                         <Stack.Screen name="RoleUpdate" component={RoleUpdate} />
                         <Stack.Screen name="HRHomescreen" component={HRHomescreen} />
+                        <Stack.Screen name="HRCreateCandidate" component={HRCreateCandidate} />
                         <Stack.Screen name="HRCreateTest" component={HRCreateTest} />
                         <Stack.Screen name="HRAssignTest" component={HRAssignTest} />
                         <Stack.Screen name="TestHeaderList" component={TestHeaderList} />
