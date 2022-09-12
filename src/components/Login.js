@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Text, StyleSheet, View, ImageBackground } from 'react-native';
+import { Image, Text, StyleSheet, View, ImageBackground, StatusBar } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
 import { postLogin, saveData, getToken, getRoleCode } from '../service/login.service';
@@ -13,7 +13,6 @@ const Login = ({ navigation }) => {
 
             if (token != null && roleCode != null) {
                 if (roleCode === 'SA1') {
-                    // navigation.navigate('RoleCreate');
                     navigation.navigate('AdminHomescreen');
                 } else if (roleCode == 'HR2') {
                     navigation.navigate('HRHomescreen')
@@ -61,7 +60,6 @@ const Login = ({ navigation }) => {
                 await saveData(res.data);
                 const roleCode = await getRoleCode()
                 if (roleCode === 'SA1') {
-                    // navigation.navigate('RoleCreate');
                     navigation.navigate('AdminHomescreen');
                 } else if (roleCode == 'HR2') {
                     navigation.navigate('HRHomescreen')
@@ -74,45 +72,49 @@ const Login = ({ navigation }) => {
         })
     }
 
+
+    // const image = { uri: require('../assets/images/background.jpg') };
+
     return (
-        <View style={styles.container}>
-            {/* <ImageBackground source={require('../assets/images/Coding.jpg')} > */}
-            {/* </ImageBackground> */}
+        <ImageBackground source={require('../assets/images/tiles.jpg')} style={styles.image} >
+            <StatusBar translucent backgroundColor='transparent' />
+            <View style={styles.container}>
+                <Image
+                    source={require('../assets/images/checklist.png')}
+                    style={{ width: 150, height: 150, marginBottom: 10 }}
+                    borderRadius={50}
+                />
+                <Text>
+                    Welcome To Bootcamp Test
+                </Text>
+                <TextInput
+                    style={styles.textInput}
+                    label='Email'
+                    mode='outlined'
+                    value={login.userUsername}
+                    onChangeText={(userUsername) => handleChangeUsername(userUsername)}
+                />
+                <TextInput
+                    style={styles.textInput}
+                    label='Password'
+                    mode='outlined'
+                    secureTextEntry={showPassword}
+                    value={login.userPassw}
+                    onChangeText={(userPassw) => handleChangePassword(userPassw)}
+                    right={login.userPassw.length > 0 && <TextInput.Icon icon="eye" onPress={changeShowPassword} />}
+                />
+                <Button
+                    style={styles.loginButton}
+                    icon='login'
+                    mode='contained'
+                    onPress={() => handleLogin()}
+                >
+                    LOGIN
+                </Button>
 
-            <Image
-                source={require('../assets/images/checklist.png')}
-                style={{ width: 150, height: 150, marginBottom: 10 }}
-                borderRadius={50}
-            />
-            <Text>
-                Welcome To Bootcamp Test
-            </Text>
-            <TextInput
-                style={styles.textInput}
-                label='Email'
-                mode='outlined'
-                value={login.userUsername}
-                onChangeText={(userUsername) => handleChangeUsername(userUsername)}
-            />
-            <TextInput
-                style={styles.textInput}
-                label='Password'
-                mode='outlined'
-                secureTextEntry={showPassword}
-                value={login.userPassw}
-                onChangeText={(userPassw) => handleChangePassword(userPassw)}
-                right={login.userPassw.length > 0 && <TextInput.Icon icon="eye" onPress={changeShowPassword} />}
-            />
-            <Button
-                style={styles.loginButton}
-                icon='login'
-                mode='contained'
-                onPress={() => handleLogin()}
-            >
-                LOGIN
-            </Button>
 
-        </View>
+            </View>
+        </ImageBackground>
     )
 }
 
@@ -129,7 +131,13 @@ const styles = StyleSheet.create({
     textInput: {
         marginVertical: 10,
         width: 275,
-    }
+    },
+    image: {
+        flex: 1,
+        justifyContent: "center",
+        // width: '100%',
+        // height: '100%'
+    },
 })
 
 export default Login;

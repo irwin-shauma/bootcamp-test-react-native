@@ -3,7 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { insertCandidate } from "../../service/candidate.service";
 
-export const HRCreateCandidate = ({navigation}) => {
+export const HRCreateCandidate = ({ navigation }) => {
+
+
 
     const [data, setData] = useState({
         userUsername: "",
@@ -34,9 +36,6 @@ export const HRCreateCandidate = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text>
-                This is HR CreateCandidate
-            </Text>
             <TextInput
                 style={styles.textInput}
                 mode='outlined'
@@ -62,7 +61,7 @@ export const HRCreateCandidate = ({navigation}) => {
             />
             <Button
                 style={styles.button}
-                icon='login'
+                icon='account'
                 mode='contained'
                 onPress={() => handleCreateCandidate()}
             >

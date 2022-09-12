@@ -38,12 +38,16 @@ const theme = {
 // const store = configureStore()
 export default function Main() {
     const Stack = createNativeStackNavigator();
+    const stackOptions = {
+        headerTransparent: true,
+    };
     return (
         // <App />
         <StoreProvider store={store}>
             <PaperProvider theme={theme}>
                 <NavigationContainer>
                     <Stack.Navigator>
+                        {/* <Stack.Navigator screenOptions={stackOptions}> */}
                         {/* <Stack.Screen name="ReduxTesting" component={ReduxTesting} /> */}
                         <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
                         <Stack.Screen name='AdminHomescreen' component={AdminHomescreen} />
